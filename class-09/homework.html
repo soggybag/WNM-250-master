@@ -1,0 +1,257 @@
+<!doctype html>
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <section>
+        <article>
+            <header>
+                <h1>WNM 250 Class 09 - Improve the Shopping Cart</h1>
+            </header>
+            
+            <h1>Solving problems</h1>
+            <h2>Total cost for each item</h2>
+            <p>The total cost for each item is calculated as the 
+                price of the item times the count. You can calculate
+                this as you loop through the cart. </p>
+            
+            <p>This code is probably best placed in </p>
+
+            <pre><code>// Calculate the total price items in cart
+// index.html 
+for (var i in cart) {
+    // Get the name, price, and count
+    var name = cart[i].name;
+    var price = cart[i].price;
+    var count = cart[i].count;
+    var total = price * count; // figure the total
+    ... Add this item to the shopping cart display ...
+}</code></pre>
+            
+            <h2>Get the total price of all items in the cart</h2>
+            <p>To get the total cost of all items in the cart
+            multiply the count by the price for each item and sum
+            these all together. You will need a loop. The sum 
+            variable needs to be placed outside the loop!</p>
+            
+            <p>This code can work anywhere in your. I placed
+            this function in cart.js because it would be 
+            easier to reuse from there. I also want to show 
+            the cart total at the top of the page. </p>
+            
+<pre><code>// Returns the total cost for all items in cart
+function getTotal() {
+    var total = 0;  // Declare this variable outside of loop
+    for (var i in cart) {
+        total += cart[i].price * cart[i].count;
+    }
+    return total; // Return the total
+}</code></pre>
+            
+            <p>Then call this function in your page.</p>
+
+            <pre><code>// Display the total in the elements with the class names: .cart-total
+$(".cart-total").html(getTotal());</code></pre>
+
+            <h2>Get the total count for cart</h2>
+            <p>here we want to know the total number of items in the cart.
+            This will be a sum of the count for each item.</p>
+            
+            <pre><code>// Returns the total number of items in cart.
+function getCount() {
+    var total = 0; // Declare this outside of loop
+    for (var i in cart) {
+        total += cart[i].count;
+    }
+    return total; // Return the total
+}</code></pre>
+
+            <p>Use this method in your page like this:</p>
+            
+            <pre><code>// Displays the total number items in cart in the element #cart-count
+$("#cart-count").html(getCount());</code></pre>
+
+            <h2>Listening for events</h2>
+            <p>As you dig deeper into JS you will run into 
+                situations where you want to to listen for an
+            event on an element and you are required to add the
+            event before the element exists!</p>
+            
+            <p>Here is an example: </p>
+            
+            <pre><code>// The first line tries to add a click event
+// To #a, but #a has not been created yet!
+$("#a").click(function(){ /* some code */ });
+// Creates #a, but it's too late #a does not get the click!
+$("#container").html("&lt;button id='a'&gt;A Button&lt;/button&gt;")
+            </code></pre>
+            
+            <p>This is exactly the situation with button in the cart!
+            All of the elements in the cart are not created until
+            something is added to the cart. Our JavaScript is run
+            when the page is loaded, this is before a customer 
+            has the chance to add anything to the cart. </p>
+            
+            <p>This situation will happen all the time! Be prepared 
+            to solve this problem.</p>
+            
+            <p>The solution is to add a listener to an element 
+            that exists, and filter the events for the elements
+            that will exist in the future. Luckily for us jQuery
+            has a simple solution that makes this easy to 
+            implement. </p>
+            
+            <h3>on(event, filter, function)</h3>
+            <p>The on() method is an advanced form of the click
+            and other event handlers. Here is an example.</p>
+            
+            <pre><code>// Add a click event to the body tag
+$("body").on("click", "#a", function(){ /* some code */ });
+// Create #a later and the event above will find it
+$("#container").html("&lt;button id='a'&gt;A Button&lt;/button&gt;")
+            </code></pre>
+            
+            <p>In this example example the event is added to the
+            body tag. So any clicks in the body, that is anywhere 
+            on the page, will be received. These clicks are filtered
+            for elements that match the description, in this case:
+            elements with the id name:#a. If ther is a match the 
+            function is run. </p>
+            
+            <p>This is is functionaly the same as the previous 
+            example, and secretly the click() method uses on() 
+            behind the scenes! So click() is just a simplified 
+            version of on().</p>
+            
+            <h2>Add some buttons to the cart</h2>
+            
+            <p>The cart html can get fairly complex. Best to 
+            organize how it is written in your code. I'd like 
+            to recommend keeping each html element on it's own
+            line, and using += to append each new thing to 
+            your output variable. </p>
+            
+            <p>Here is a sample from my example: </p>
+            
+            <pre><code>
+html += "&lt;li&gt;"+name+" $"+price+" x "+count;
+html += "&lt;button class='add-one-item' data-name='"+name+"'&gt;+&lt;/button&gt;";
+html += "&lt;button class='subtract-one-item' data-name='"+name+"'&gt;-&lt;/button&gt;";
+html += " = "+(price * count);
+html += "&lt;/li&gt;";
+            </code></pre>
+            
+            <p>You can think of each line above as </p>
+            
+            <pre><code>
+&lt;li&gt;Apple $0.99 x 3
+&lt;button class='add-one-item' data-name='Apple'&gt;+&lt;/button&gt;
+&lt;button class='subtract-one-item' data-name='Apple'&gt;-&lt;/button&gt;
+ = 2.97
+&lt;/li&gt;
+            </code></pre>
+
+            <p>Which is how you might write this if it were 
+            standard HTML. </p>
+            
+            <p>Look closely at the button tags. Notice I added 
+            data-name to each of these. This way clicking on a 
+            a button we can check the product name and add or 
+            subtract a product with that name. </p>
+            
+            <p>To handle clicks on these buttons us on(). 
+            Remember these buttons don't exist until something 
+            is added to the cart, while the code that listens 
+            for clicks on the buttons is added when the page loads!</p>
+            
+            <p>Note: the functions addItem(name), and 
+            removeItem(name) need to be added. They appear in the 
+            next section. The updateCart() method refers to the
+            method that writes the cart into your page. You may
+            have used another name for this. </p>
+            
+            <pre><code>
+$("body").on("click", ".add-one-item", function(event){
+    // Get the name of the item
+    var name = $(this).attr("data-name");
+    addItem(name);  // Add the item to the cart!
+    updateCart();   // The contents of the cart have been changed update the cart
+});
+
+$("body").on("click", ".subtract-one-item", function(event){
+    // Get the name of the item 
+    var name = $(this).attr("data-name");
+    removeItem(name);   // remove that item
+    updateCart();       // The cart has been changed update it
+});
+            </code></pre>
+            
+            <h2>Adding and removing items from the cart</h2>
+            
+            <p>Adding and removing products from the cart is
+            probably best handled from cart.js. I used these 
+            funtions to handle adding and removig products from 
+            the cart. </p>
+            
+            <pre><code>
+// Add Item to the cart. 
+function addItem(name, price, count) {
+    var item = makeItem(name, price, count);
+    for (var i in cart) {
+        if (cart[i].name == item.name) {
+            cart[i].count += item.count;
+            return;
+        }
+    }
+    cart.push(item);
+}
+
+function removeItem(name) {
+    for (var i in cart) {
+        if (cart[i].name === name) {
+            cart[i].count -= 1;
+            if (cart[i].count === 0) {
+                cart.splice(i, 1); // Remove this item
+            }
+            return; // End the function here
+        }
+    }
+}            
+            </code></pre>
+
+            <p>In both cases we need to search the cart for an
+            item with the name that is passed into the function. </p>
+            
+            <h1>Homework</h1>
+            <p>Make the cart system functional (mostly). You should be
+            able to do the following:</p>
+            <ul>
+                <li>Add items to the cart.</li>
+                <li>List the cart.</li>
+                <li>The cart should show the name, cost, count, 
+                    and total cost for each item.</li>
+                <li>The cart should show a total cost for all 
+                    items in the cart.</li>
+                <li>The page should display the number of items 
+                    in the cart. </li>
+                <li>Each item in the cart should have buttons to 
+                    add and remove items from the cart.</li>
+                <li>Removing the last of an item in the cart 
+                should remove that item entirely from the cart.</li>
+                <li><strong>Use CSS to style all the cart!</strong>
+                Style all of the elements, including the button!
+                Make the cart listing look as good as you can.</li>
+                <li>When there are no items in the cart your 
+                page should handle this situation appropriately. 
+                For example the cart button might be disabled, 
+                or the cart might display a message like: 
+                "You cart is empty"</li>
+            </ul>
+        </article>
+    </section>
+</body>
+
+</html>

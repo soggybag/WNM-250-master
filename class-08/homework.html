@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <section>
+        <article>
+            <header>
+                <h1>Homework - Start Integrating your cart</h1>
+            </header>
+            <p>The goal this week will be to look at JavaScript Events. We will be using jQuery's event system but, remember this is just a helper to make it easier to work with the event system that is already built into JavaScript.</p>
+
+            <h2>Events</h2>
+            <p>You already used the click event. This represents a simple mouse click on any element within the page. There are many oher events your web pages can work with. Using all of these events in different situations will allow JavaScript to make your web pages come alive. </p>
+            
+            <p>You will use the click event again here to handle clicks on the Add to Cart button.</p>
+                
+            <h2>Attributes</h2>
+            <p>Attributes are the extra elements added to tags. They are always written in the form: name=<q>value</q> where the value is always in quotes. For example, class, href, and id are all attributes that you should be familiar with. </p>
+
+            <pre><code>&lt;a href="#a" class="button" id="button-1"&gt;Button&lt;/a&gt;</code></pre>
+
+            <p>You can invent and add your own attributes if you like. Best practice says that non standard attribute names be prefixed with "data-". For example you might want to add the name of a product as an attribute:</p>
+
+            <pre><code>data-name="Things Name"</code></pre>
+
+            <p>With jQuery you can use the .attr("name") method to both get and set an attribute value. </p>
+
+            <p>You already used attributes earlier to get the href value when a product was clicked. <strong>Stop now, examine the code 
+                from the previous homework example, and find where you did 
+                this...</strong>
+            </p>
+
+            <h2>Add to Cart</h2>
+            <p>You will use this attributes for the add to cart button. You already created some JavaScript to run your shopping cart. Recall that this code had a function to add a new item to the cart When adding an item you need to tell the method the name, price, and count for the item. For example "Apple", 1.99, and 1. </p>
+
+            <p>When you create an add to cart button, that button will need to know which item to add, the price, and how many to add. You will make this possible by adding attributes to supply that information. The "Add to Cart" button might look like this: </p>
+
+            <pre><code>&lt;a href="#a" class="add-to-cart" data="Apple" data-price="1.99"&gt;Add to Cart&lt;/a&gt;</code></pre>
+
+            <p>While I used an anchor tag for the example, this could be any tag type of tag. I did not include the count in this case, since clicking this button always add one Apple to the cart, I can hard code the count.</p>
+
+            <p>I used a class name: "add-to-cart" for this link. I did this to make it easy to work with. Anyting that adds an item to the cart will have this class. Clicking anything with this class will add an item to the cart!</p>
+
+            <h2>Modifying the HTML of a page with jQuery</h2>
+            <p>jQuery provides many ways to modify the HTML content of a page. We will explore one of these methods here: .html("")</p>
+
+            <h3>.html("&lt;p&gt;Hello World&lt;/p&gt;")</h3>
+            <p>The .html() method allows you to set the HTML text within an element. For example: </p>
+
+            <pre><code>$("body").html("&lt;h1&gt;Hello World&lt;/h1&gt;")</code></pre>
+
+            <p>The code above sets contents of the body tag to an h1 containing the text Hello World. Note! this would replace the all other content in the body tag with the new text! Also notice the content contains tags and text. You can include classes, id's and anything else that would be valid in an html page. When using .html() imagine that you were typing the text into the page. </p>
+
+
+            <h1>Homework</h1>
+            <ul>
+                <li>Include "Add to Cart" buttons for each product.</li>
+                <li>set up a click action for these buttons that will add that product to the shopping cart.</li>
+                <li>Update the cart display to show the items that have been added.
+                </li>
+                <li>Show the total cost for each item. This should be calculated as the price of the item multiplied by the count: price * count</li>
+                <li>Show the total count of all items in the cart. You can place this anywhere in the shopping cart.</li>
+                <li>Show the total cost for all items in the shopping cart. You can show this anywhere in the cart. </li>
+                <li>Show the total cost and count for the cart at the top of your page, not part of the cart.</li>
+            </ul>
+        </article>
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Absolute and Relative Position</title>
+
+    <style type="text/css">
+        .box {
+            position: relative;
+            width: 300px;
+            height: 300px;
+        }
+        
+        .red {
+            top: 20px;
+            left: 20px;
+            background-color: rgba(255, 0, 0, 0.5);
+        }
+        
+        .green {
+            background-color: rgba(0, 255, 0, 0.5);
+        }
+        
+        .blue {
+            right: 30px;
+            bottom: 10px;
+            background-color: rgba(0, 0, 255, 0.5);
+        }
+        
+        .yellow {
+            background-color: rgba(255, 255, 0, 0.5);
+        }
+        
+        p {
+            font-size: 36px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box red"></div>
+    <div class="box green"></div>
+    <div class="box blue"></div>
+    <div class="box yellow"></div>
+
+    <p>In this case the all of the boxes use relative position. Notice the red and blue boxes have shifted from their normal position and everything else is where it would have been if we had used the static (default) position. Setting these properties moves the object from where it would normally have been. It's relative right?
+    </p>
+
+    <p>Relative position may not have an effect on object when you haven't set the left, top, right, or bottom. Relative position has a big effect on descendant objects that have absolute position, you will see the effect in a moment.</p>
+</body>
+
+</html>

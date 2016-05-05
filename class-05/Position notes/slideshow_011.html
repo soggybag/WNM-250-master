@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Absolute and Relative Position</title>
+
+    <style type="text/css">
+        .box {
+            position: absolute;
+            left: 100px;
+            top: 300px;
+            width: 200px;
+            height: 200px;
+            background-color: rgba(255, 0, 0, 0.5);
+        }
+        
+        p {
+            font-size: 36px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <p>In this example the red box is is placed on the page using absolute position. The left of the box is 100px from the left of the window, while the top of the box is 300px from the top of the window. </p>
+    <p>Other elements ignore the absolutely positioned element, and the absolute element ignores them. Absolute position is like that. </p>
+    <p>Notice the box doesn't change it's position when the window is resized, or when other elements shift around. It's position is absolute.</p>
+</body>
+
+</html>

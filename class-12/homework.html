@@ -1,0 +1,227 @@
+<!doctype html>
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <section>
+        <article>
+            <header>
+                <h1>WNM 250 Class 12</h1>
+            </header>
+            
+            <h1>Organizing your project</h1>
+            
+            <p>Getting your files organized will help you make better web sites
+            and while also making it easier to understand how your site operates.</p>
+            
+            <p>While starting out it might be easier to have all of the features 
+            of your site, html, css, and JS, in one file. Over time this type of 
+            organization becomes burdensome and leads to gigantic file which, 
+            while you know everything is there, is hard to read. One of the easiest
+            ways to get your web projects organized is to separate your HTML, CSS, 
+            and JS into separate files. This also has the advantage making 
+            some of your code portable later on. </p>
+            
+            <h2>Organize your files</h2>
+            
+            <h3>CSS - style.css</h3>
+            <p>Move your CSS styles into a file named style.css. Save this into
+            the same folder with your index.html. <strong>Do Not</strong> 
+            include the &lt;style tag&gt;!</p>
+            
+            <p>Link to your style.css file by adding the link tag in the head of
+            your index.html. This tag <strong>must</strong> use the rel 
+            attribute with a value of <q>stylesheet</q>! Use the href attribute
+            load style.css, be sure to use the correct path here!</p>
+            
+            <pre><code>&lt;link rel="stylesheet" href="style.css"&gt;</code></pre>
+            
+            <h3>JavaScript - main.js</h3>
+            
+            <p>You will often be linking to more than one JavaScript file. 
+            Usually many of the files are libraries of code you are getting 
+            from somewhere else, like loading jQuery from the CDN for example. 
+            Or they may be libraries of code that are not specific to this 
+            project. For the JavaScript that specific to this project make a
+            file named main.js. Save this file in the same folder as index.html</p>
+            
+            <p>For now consider it best practice to keep all of your script 
+            tags at the bottom of your html page. </p>
+            
+            <p>Move all of the JS code you have in index.html into main.js. 
+            Do not include the &lt;script&gt; tag!</p>
+            
+            <p>Link to main.js with the script tag. Be sure to place this tag
+            <strong>last</strong> in the group of script tags.</p>
+            
+            <pre><code>&lt;script src="main.js"&gt;</code></pre>
+            
+            <h2>DRY - Don't Repeat Yourself</h2>
+            
+            <p>DRY is a computer programming concept that imparts good advice
+            and best practice. Any time you find a place to apply the concept 
+            you will be making better software, and making your work easier
+            and more reliable. The idea of DRY is to not repeat blocks of code
+            whenever possible. For example, rather than using an id on individual 
+            elements that share the same CSS styles, you can apply a class name 
+            and allow the elements to share the same style rules. This would 
+            mean that you now only have to write these rules once.</p>
+            
+            <p>How and when you apply DRY to your work is up to you. You need to 
+            examine your work and find opportunities where you can eliminate 
+            repetition. You can apply DRY to your JavaScript by creating 
+            functions to handle code blocks that you find yourself writing more 
+            than once. You can also apply DRY to HTML by using Templates.</p>
+            
+            <h1>Templates</h1>
+            
+            <p>Templates are blocks of HTML can be called up or generated as 
+            needed. You may have noticed that you often write the same block 
+            of HTML code again and again only changing the content. This is 
+            the problem templates are meant to solve. Imagine writing a 
+            block of HTML only once, and filling in the content as needed, and 
+            you will have the concept of Templating.</p>
+            
+            <p>Templating requires JavaScript or another active language. HTML
+            can not handle templates by itself. There are many different 
+            ways you can create templates, the items displayed in the shopping 
+            cart could be considered a template. </p>
+            
+            <h3>Applying tempaltes to the Store</h3>
+            
+            <p>Stop a moment and examine your work. Ask yourself where you might 
+            make use of templates. To do this look for blocks of HTML that are 
+            repeated. </p>
+            
+            <p>Two areas where templates can be used are the products, and 
+            product details. Each product is displayed in an almost identical 
+            block of HTML, and the product details are the same. By replacing
+            these with a template you will be saving time, and reducing the 
+            amount code in your page. This will make your work easier, and more
+            reliable. </p>
+            
+            <h3>Templating Libraries - Handlebars js</h3>
+            
+            <p>Many smart people have thought long and hard about this problem
+            and come up with many ingenious solutions. For the example here I have
+            chosen the Handlebars js library. Handlebars JS is easy to use and 
+            has more features than we will use in this project. You can read more
+            about Handlebars here: 
+            <a href="http://handlebarsjs.com">http://handlebarsjs.com</a></p>
+            
+            <h4>Handlebars Templates</h4>
+            
+            <p>A Handlebars Template is stored in a script tag. You'll give the 
+            tag an id, and type attribute. The id will allow us to access the tag
+            via JS, and the type will mark it a special type of script. Here is 
+            a sample template: </p>
+            
+            
+            <pre><code>&lt;script id="entry-template" type="text/x-handlebars-template"&gt;
+  &lt;div class="entry"&gt;
+    &lt;h1&gt;{{title}}&lt;/h1&gt;
+    &lt;div class="body"&gt;
+      {{body}}
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/script&gt;</code></pre>
+            
+            <p>The template above would produce the HTML below:</p>
+            
+            <pre><code>&lt;div class="entry"&gt;
+  &lt;h1&gt;Hello&lt;/h1&gt;
+  &lt;div class="body"&gt;
+    Welcome to Templates!
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            
+            <p>The HTML in the second block above is contained in the first. 
+            Looking closely at the first block you will see that the first 
+            block doesn't contain any content, and instead uses placeholders
+            written something like: {{name}}. The {{ and }} are the "Handlebars".
+            Think of these as variables. You will set the values placed inside
+            the "handlebars" each time you create a copy of a template.</p>
+            
+            <h3>Compiling Templates</h3>
+            
+            <p>Before a template can be used you need to compile it.</p>
+            
+            <pre><code>var source = $("#entry-template").html();
+var template = Handlebars.compile(source);</code></pre>
+            
+            <p>This creates a template function, named "template" in the example 
+            above. This template function takes an object, and returns the 
+            template HTML populated with values from the object. </p>
+            
+            <pre><code>var obj = {title: "My New Post", body: "This is my first post!"};
+var html = template(obj);</code></pre>
+            
+            <p>In the example above the object: obj, has properties: title, and 
+            body. The string returned from the function is the template with the 
+            "handlebar" values replaced. </p>
+            
+            <h3>Site Data</h3>
+            
+            <p>An easy way to work with site data is to create an array of objects.
+            Each object should have properties used in your handlebars templatess. 
+            Here is an example:</p>
+            
+            <pre><code>var storeData = [
+    {id:1,
+    name: "Cat Fuzz",
+    price: 123.12,
+    desc: "Furry Fuzzy screeches",
+    image:"images/01.jpg"},
+    {id:2,
+    name: "Tweedle Echo",
+    price:132.32,
+    desc: "If I've said it once I've said twice...",
+    image:"images/02.jpg"}
+];</code></pre>
+            
+            <p>This example defines an array containing two objects. Each object 
+            contains properties:</p>
+            
+            <ul>
+                <li>id</li>
+                <li>name</li>
+                <li>price</li>
+                <li>desc</li>
+                <li>image</li>
+            </ul>
+            
+            <p>This JavaScript array and objects must be formatted correctly! 
+            If not it will not work. Get comfortable with this. Be able to 
+            solve any problems with formatting. Use the console to look for 
+            errors. </p>
+            
+            <h1>Homework</h1>
+            <p>Your store is due class 15. You should have tested
+            this design some of your peers last week. Now it's 
+            time to redesign and incorporate some of the feedback.</p>
+            <p>As you are redesigning the visual component of your 
+            project also rethink the HTML structure and code 
+            behind it. Use the concept of templates covered this 
+            week when you rebuild your site.</p>
+            <p>Why rebuild your site? </p>
+            <ul>
+                <li>Design - Face it your first answer might 
+                often be right. Your first take on any design 
+                problem is probably not your best work. </li>
+                <li>Code - The best way to learn to code is to 
+                practice. Rebuilding your site will give you a 
+                chance to review everything you have leanred 
+                this semester.</li>
+                <li>New ideas - Recreating your site will give 
+                you the opportunity to rethink how sites are 
+                built and how they work. Compare the new ideas
+                with your original approach.</li>
+            </ul>
+        </article>
+    </section>
+</body>
+
+</html>

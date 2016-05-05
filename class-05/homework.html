@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+  <head>
+    <title></title>
+      <style>
+          .box {
+              position: absolute;
+          }
+      </style>
+  </head>
+  <body>
+    <article>
+    
+        <section>
+            <header><h1>Shopping Cart</h1></header>
+            
+            <p>Continue working on your shopping cart code. The goal is to create the necessary functions
+            to add items to the cart arraym remove an item from the cart array, increase and decrease 
+            the number of items in the cart.</p>
+            
+            <p>It is important to understand that at this stage the cart will only produce results to 
+            the console. This is a okay. We are doing well, and our cart script is working well if it
+            can run independantly of our interface. This allows the cart script to work with any interface
+            and adapt to changes that might occur with the interface.</p>
+            
+        </section>
+
+        <section>
+            <header><h1>CSS position</h1></header>
+            
+            <p>Understanding CSS position is important to being able to place things anywhere on the page 
+            in realtion to any other element. There are a few rules that govern CSS Position. Understanding
+            these rules will make it easy for you to see where, when, and how to apply CSS position.</p>
+            
+            <h2>The position property:absolute</h2>
+            
+            <p>Absolute position allows the position of an element to be set by setting the: top, right, 
+            bottom, or left edges of the element. While this makes sense at a glance, in practice it
+            doesn't always work out as expected. The key feature to understand with absolute position is 
+            where the coordintes are refrenced. In other words when setting the left edge of an 
+                absolutely positioned element where do start measuring from? </p>
+            
+            <p>The answer is the realative ancestor. Normally what you will see an absolutely positioned 
+            element sets it's position relative to the edges of the browser window. This is because, if 
+            there are no other relative elements, the body tag is used as a reference. </p>
+            
+            <p>To create define a relative ancesstor set the position of your container to realative. 
+            From here any descendant elements with the position: absolute will use the relative ancessestor
+            as the reference. </p>
+                
+        </section>
+      
+        <section>
+            <header><h1>Homework</h1></header>
+            
+            <h3>Alternate product boxes</h3>
+            <p>Create three alternate product box layouts. Look at your store. Examine the layout of each
+            product. Imagine three alternate layouts for products. Think about moving the name and price. 
+            Use absolute position for this. </p>
+
+            <h3>Add badges</h3>
+            <p>Create some badges and add these to products in your store. The badge should appear in one
+            of the corners of the product box. </p>
+            <p>Make three badges for products. These can be "featured", "On Sale", and "Best seller". You 
+            can replace any of these with a badge of your own invention if you like. </p>
+            
+        </section>
+      
+    
+        
+        
+    </article>
+  </body>
+</html>

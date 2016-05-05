@@ -1,0 +1,75 @@
+HTML Review 
+Page Structure
+    doctype 
+    Use the tag that best describes
+    Practice Example 
+        Markup some example text. Include a list, heading, image, and navigation
+
+CSS review 
+    selector 
+        class and ids
+            always use classes
+    rule
+    Practice Example 
+        Add styles a page 
+    
+JavaScript 
+    script tag
+    jQuery
+        Weather widget
+
+Putting it all together
+
+Assignment 
+    A single page web site
+
+CSS Frameworks
+
+
+Assignment - 1  
+Markup and Style practice and review. 
+Using the text in Twitter-Profile.txt recreate 
+
+Assignment - 2
+Description
+Your first assignment is to secure a domain name and a web host. Choose your domain name wisely, as it will be the one you use for not only this class, but for future web and portfolio classes. Try and secure your name or a variant. You will also need a monthly hosting account. This may be obtained for a minimal monthly fee. Web hosting plans change often, but make sure your plan includes:
+
+At least 50GB server space
+At least 10 email accounts
+24 hour support
+Domain registration tools
+Purpose
+It is important that you secure your own domain and web server space, not only for this class, but for other web classes in the future.
+
+Tools
+Web browser
+Module 1 Resource Files (available in Media Download section)
+
+Assignment - 3
+Description
+Deliver an HTML document with your name as the main heading, your city as sub heading, a paragraph about yourself, and another paragraph about why you are interested in this subject.
+Purpose
+The purpose of this assignment is to create a simple page using HTML markup. It is also important to begin the process of hand-coding an HTML page.
+
+Tools
+Text editor
+Web browser
+Module 1 Resource Files (available in Media Download section)
+
+
+
+    
+
+/* Break points */
+
+@media only screen and (min-width: 768px) {
+    /* tablets and desktop */
+}
+
+@media only screen and (max-width: 767px) {
+    /* phones */
+}
+
+@media only screen and (max-width: 767px) and (orientation: portrait) {
+    /* portrait phones - only if you need it */
+}

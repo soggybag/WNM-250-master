@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Absolute and Relative Position</title>
+
+    <style type="text/css">
+        .box {
+            position: relative;
+            width: 300px;
+            height: 300px;
+        }
+        
+        .small-box {
+            width: 50px;
+            height: 50px;
+            background-color: #000;
+        }
+        
+        .red {
+            top: 20px;
+            left: 20px;
+            background-color: rgba(255, 0, 0, 0.5);
+        }
+        
+        .green {
+            background-color: rgba(0, 255, 0, 0.5);
+        }
+        
+        .blue {
+            right: 30px;
+            bottom: 10px;
+            background-color: rgba(0, 0, 255, 0.5);
+        }
+        
+        .yellow {
+            background-color: rgba(255, 255, 0, 0.5);
+        }
+        
+        p {
+            font-size: 36px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box red">
+        <div class="small-box"></div>
+    </div>
+    <div class="box green">
+        <div class="small-box"></div>
+    </div>
+    <div class="box blue">
+        <div class="small-box"></div>
+    </div>
+    <div class="box yellow">
+        <div class="small-box"></div>
+    </div>
+
+    <p>Each colored box now has a descendant element, small black box. Notice that this box moves with it's ancestor. But what if these descendant elements were absolutely positioned? </p>
+
+    <p></p>
+
+</body>
+
+</html>

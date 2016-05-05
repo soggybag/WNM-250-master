@@ -1,0 +1,211 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Home Class 7</title>
+    </head>
+    <body>
+        
+        <section>
+            <header>
+                <h1>JavaScript - Selecting elements</h1>
+            </header>
+            
+            <p>One of the most common tasks you will perform with 
+            JavaScript is selecting elements. Elements are arranged
+            and held in the DOM. For the most part you can select an 
+            element similarly to haw you might select an element in CSS.</p>
+            
+            <p>getElementById()</p>
+            
+            <h2>jQuery</h2>
+            
+            <p>jQuery is a library of JavaScript code that adds many 
+            helper functions to make your job of working with JavaScript
+            easier. jQuery especially simplifies the selection of 
+            elements by adding an easy to use system that relies on 
+            the same selector syntax used by CSS. </p>
+            
+            <h3>Import jQuery</h3>
+            
+            <p>You link your HTML pages to jQuery in one of two ways.</p>
+            
+            <ul>
+                <li>Download and link to jQuery.js locally - This method 
+                works offline, but would require you to keep track of the 
+                extra file.</li>
+                <li>Link to jQuery on the CDN over the internet - This
+                method requires an internet connection, but you don't have 
+                to keep track of any extra files. (Be sure to http: to the 
+                link!)</li>
+            </ul>
+            
+            <p>Visit jQuery.com and click Download. For the examples here 
+            I will use jQuery from the CDN. Copy the link and paste it into
+            your page. </p>
+            
+            <h3>When does JavaScript run?</h3>
+            
+            <p>JavaScript runs as soon as the browser loads a script tag. 
+            When placing the script tag at the TOP of the page this can 
+            problems because the HTML elements lower on the page will not 
+            have loaded yet! For this reason I will ask you always place 
+            your script tags at the bottom of the page. </p>
+            
+            <p>Any scripts that will work with jQuery require that 
+            jQuery be loaded first! Be sure to place the script that loads
+            jQuery above any Scripts you write that will use jQuery. It's 
+            problem best practice to load jQuery before all of your other 
+            scripts.</p>
+            
+            <h3>Selecting elements</h3>
+            
+            <p>Use the $() method to select elements to work with. You can
+            use any CSS selector string in this method. For example:</p>
+            
+<pre><code>$("#close-button") // Selects the element with the id name #close-button</code></pre>
+            
+<pre><code>$("p") // Selects all p tags</code></pre>
+            
+<pre><code>$(".box") // Selects all elements with the class name .box</code></pre>
+            
+            <h3>Adding and removing class names</h3>
+            
+            <p>A technique that I find has many practical applications is
+            adding and removing class names. This is a simple concept that 
+            has a wide range of usefulness. You can do many things with this
+            idea. For example hiding and showing page content. Or 
+            highlighting or showing an element as selected. Animating an 
+            element into view, are a few ideas. </p>
+            
+            <p>The whole concept has a simple mechanism use JavaScript 
+            to add or remove a class name from an element or group of 
+            elements in your page. Connect the class name to styles in your 
+            style sheet that change the appearance of the element. </p>
+            
+            <h3>.addClass("a-class-name")</h3>
+            
+            <p>Use jQuery's addClass() method to add a class name. Include 
+            the class name as a string, do NOT prepend a dot (".")</p>
+            
+<pre><code>$("#header").addClass("code-red"); // Adds the class name code-red to the element with the id #header.</code></pre>
+            
+<pre><code>$(".box").addClass("border-selected"); // Adds the class name border-selected to all elements with the class box.</code></pre>
+            
+            <h3>.removeClass("a-class-name")</h3>
+            
+            <p>The removeClass() method removes a class name from an element.
+            This analgous to addClass(). </p>
+            
+<pre><code>$("#header").removeClass("code-red"); // Removes the class name code-red from the element with the id #header.</code></pre>
+            
+<pre><code>$(".box").removeClass("border-selected"); // Removes the class name border-selected from all elements with the class box.</code></pre>
+            
+            <h3>.toggleClass("a-class-name")</h3>
+            
+            <p>The toggleClass() method adds a class when that class doesn't 
+            exist, or removes the class if it does exist. Think of it as a 
+            combination of both the addClass() and removeClass() methods with
+            some added logic. </p>
+            
+            <p>Use toggleClass() to create things that toogle. When something 
+            toggles it changes between two states, like a light switch. You 
+            can use toggleClass() to easily create drawers that open and 
+            close, custom switches and check boxes. </p>
+            
+<pre><code>$("#header").toggleClass("code-red"); // Adds the class name code-red if it doesn't exists to the element with the id #header, otherwise it removes the class code-red.</code></pre>
+            
+<pre><code>$(".box").toggleClass("border-selected"); // Adds the class border-selected if does not exist, or removes it if it exists.</code></pre>
+            
+            <h3>.click(function)</h3>
+            
+            <p>Use the click() method to add a click event to an object. 
+            Use this to add simple interactivity to your pages. </p>
+            
+            <p>The click() method takes a function as a parameter, and it
+            passes to that function an event object.</p>
+            
+<pre><code>$("#header").click(function(event){
+    $(this).toggleClass("code-red");
+}); 
+// Toggles the class code-red each time #header is clicked.</code></pre>
+            
+<pre><code>$(".box").click(function(event){
+    $(this).toggleClass("border-selected"); 
+});
+// Toggles the class border-selected on the .box that was clicked. 
+// The code here applies to all elements with the class name box. 
+// The click action only applies to the single box that was clicked.</code></pre>
+            
+            <h3>this - ?</h3>
+            
+            <p>The keyword this is a special variable that represents the 
+            current object. Use this to refer to an the element that owns
+            the current function. In the forst example above you'll </p>
+            
+        </section>
+        
+        <section>
+            <header><h1>Homework</h1></header>
+            
+            <h2>Hiding and Showing the shopping cart</h2>
+            
+            <p>Use the examples to hide and show the shopping cart. 
+            Use the technique presented here to add and remove a class name
+            on the shopping cart container element. Use the styles 
+            associated with the class name to hide or show the cart. A 
+            good strategy would be to have the cart in a hidden state:</p>
+            
+<pre><code>display: none;</code></pre>
+            
+            <p>Use add a class to make it visible:</p>
+            
+<pre><code>display: block;</code></pre>
+            
+            <h2>Hiding and showing product details</h2>
+            
+            <p>Add a click action to each of your products that will 
+            show the product in a detail view. </p>
+            
+            <p>Approach this by adding all of the product detail views
+             to your page and making these hidden. Use the click method 
+            to add a class that makes one of these detail views visible. </p>
+            
+            <h3>.attr("attribute-name")</h3>
+            
+            <p>Look at my example. I created a simple method to connect 
+            each product with it's associated detail view. I used jQuery's 
+            attr() method. This method returns the value of an attribute. 
+            In this case it is the value of the href attribute of the 
+            link (a tag) that was clicked. </p>
+            
+            <h3>Closing the cart</h3>
+            
+            <p>since the cart is a sinle object the close button can target 
+            that element by an id name. </p>
+            
+            <h3>Closing the product details</h3>
+            
+            <p>For product details it would be cumbersome to write a close 
+            function for each close button. We would need one function 
+            for each detail view. It's better for us to write a generic 
+            function that applies to all of the close buttons in all of 
+            the detail views. </p>
+            
+            <p>jQuery helps us accomplish this with some it's other methods.
+            To solve this we need the close button to look up the DOM 
+            for the element nearest element for the element that we 
+            can identify as the container for the detail view. In my 
+            example this was: </p>
+            
+<pre><code>$(this).parents(".product-details").removeClass("show");</code></pre>
+            
+            <p>Here $(this) is the close button inside of the details views. 
+            Clicking it looks up the DOM with the .parents() method. In this 
+            I look at each parent trying to find an element with the class name
+            "product-details". When I find that element I used removeClass() to 
+            remove the class "show" and the element disappears. </p>
+            
+            
+        </section>
+    </body>
+</html>

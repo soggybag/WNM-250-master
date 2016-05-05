@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Class 12</title>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body class="">
+        
+        <!-- Header ********************************************** -->
+        <div>
+            <header>
+                <div class="logo">
+                    <a href="#">Site Title</a>
+                </div>
+                <div class="cart-info">
+                    <a id="show-cart" href="#">Cart</a>
+                    <span id="cart-count"></span>
+                    <span class="cart-total"></span>
+                </div>
+            </header>
+        </div>
+		<!-- Header ********************************************** -->
+        
+        
+        <!-- Product list ********************************************** -->
+		<ul id="list">
+			<!-- products -->
+		</ul>
+         <div style="clear: both"></div>
+        <!-- Product list ********************************************** -->
+        
+        
+        
+        <!-- Shopping Cart ********************************************** -->
+        <div id="shopping-cart-container" class="shopping-cart-wrapper hide-cart">
+            <div class="shopping-cart">
+                <div id="close-cart-button" class="close-button"></div>
+            
+                <h1>Shopping cart</h1>
+                <ul id="cart-ul">
+                    <!-- Cart displays here -->
+                </ul>
+                <div>
+                    Total: <span class="cart-total"></span>
+                </div>
+                <div><button id="update-cart-button">Update Cart</button></div>
+            </div>
+        </div>
+        <!-- Shopping Cart ********************************************** -->
+        
+        
+        
+        <!-- **************** Product Template *************************** -->
+        <script id="product-template" type="text/x-handlebars-template">
+            <li>
+                <a href="#details-{{id}}" class="product-link">
+                    <img src="{{image}}"  width="288" height="384">
+                    <div class="name">{{name}}</div>
+                    <div class="price">${{price}}</div>
+                </a>
+            </li>
+        </script>
+        <!-- **************** Product Template *************************** -->
+        
+        
+        
+        <!-- **************** Details Template *************************** -->
+        <script id="product-detail-template" type="text/x-handlebars-template">
+            <div id="details-{{id}}" class="product-details">
+                <div class="product-details-inner">
+                    <div class="close-button close-details-button"></div>
+                    <img class="product-detail-image" src="{{image}}"  width="288" height="384">
+                    <div class="product-detail-details">
+                        <div class="product-detail-name">
+                            <h1>{{name}}</h1>
+                            <p>{{desc}}</p>
+                            <p><a class="add-to-cart" 
+                                  href="#" 
+                                  data-name="{{id}}" 
+                                  data-price="{{price}}">Add to Cart</a></p>
+                        </div>
+                        <div class="product-detail-price">${{price}}</div>
+                    </div>
+                </div>
+            </div>
+        </script>
+        <!-- **************** Details Template *************************** -->
+
+        
+        
+        
+        <!-- JavaScript ********************************************** -->
+        <script src="jquery-2.0.3.min.js"></script>
+        <script src="handlebars-v4.0.5.js"></script>
+        <script src="cart.js"></script>
+        <script src="data.js"></script>
+        <script src="main.js"></script>
+        
+	</body>
+</html>

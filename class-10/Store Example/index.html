@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<style>
+			body {
+				font-family: Helvetica;
+				font-size: 18px;
+				background-color: rgb(33, 33, 33);
+                color: rgb(200, 200, 200);
+			}
+            
+            #shopping-cart-container {
+                color: rgb(33, 33, 33);
+            }
+            
+            a {
+                color: #ccc;
+                text-decoration: none;
+            }
+            
+            a:hover {
+                color: #fff;
+            }
+            
+            #list {
+                width: 1044px;
+                margin: auto;
+                clear: both;
+                padding: 0;
+            }
+			
+			#list li {
+				position: relative;
+                overflow: hidden;
+                width: calc(33% - 60px);
+                height: 384px;
+                margin: 30px; 
+                float: left;
+			}
+			
+			#list li img {
+				position: absolute;
+				display:block;
+				left: 0;
+				top: 0;
+				transition: 1200ms;
+			}
+			
+			#list li:hover img {
+				-webkit-transform: scale(1.15) rotate(3deg);
+			}
+			
+			.name, .price {
+				position: absolute;
+				transition: 400ms cubic-bezier(0.23, 1, 0.32, 1);
+			}
+			
+			.name {
+				left: 0; 
+				bottom: -41px;
+				color: #222;
+				width: 268px;
+				background-color: rgba(250,250,250,1);
+				padding: 10px;
+				box-shadow: 1px 1px 6px rgba(0,0,0, 0.5);
+			}
+			
+			#list li:hover .name {
+				bottom: 0;
+			}	
+            
+            .product-link {
+                display: block;
+            }
+			
+			.price {
+				right: -150px;
+				top: 18px;
+				width: 100px;
+				height: 20px;
+				padding: 0 25px;
+				/* background-color: rgba(250,92,79, 1); */
+				background-image: url(images/flag.svg);
+				background-size: cover;
+				
+				font-size: 0.8em;
+				line-height: 20px;
+				/* box-shadow: 1px 1px 6px rgba(0,0,0, 0.5); */
+				-webkit-filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.5));
+				transition-delay: 600ms;
+			}
+			
+			#list li:hover .price {
+				right: 0;
+			}
+			
+            
+            .shopping-cart-wrapper {
+                position:fixed;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.5);
+            }
+            
+            .shopping-cart {
+                width: 600px;
+                background: #ddd;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                -webkit-transition: 400ms;
+            }
+            
+            .hide-cart {
+                opacity: 0;
+                display: none;
+            }
+            
+            .close-button {
+                position: absolute;
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                background: red;
+                right: -15px;
+                top: -15px;
+            }
+			
+            
+            .product-details {
+                display: none;
+                position: fixed;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(255, 255, 255, 0.75);
+                box-shadow: 0 0 40px #000;
+            }
+            
+            .product-details.show {
+                display: block;
+            }
+            
+            .product-details-inner {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                -webkit-transform: translate(-50%, -50%);
+                background: #000;
+                width: calc(288px * 2);
+                height: 384px;
+            }
+            
+            .product-detail-image {
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+            
+            .product-detail-details {
+                position: absolute;
+                right: 0;
+                top: 0;
+                width: calc(288px - 2em);
+                margin: 1em;
+                color: #fff;
+            }
+            
+		</style>
+	</head>
+	<body class="">
+        
+        <div>
+            <a id="show-cart" href="#">Cart</a>
+            <span id="cart-count"></span>
+            <span class="cart-total"></span>
+        </div>
+		
+        <!-- Product list ********************************************** -->
+		<ul id="list">
+			<li>
+                <a id="a" href="#a-details" class="product-link">
+				    <img src="images/01.jpg"  width="288" height="384">
+				    <div class="name">Cat Fuzz</div>
+				    <div class="price">$101.00</div>
+                </a>
+			</li>
+			<li>
+                <a id="b" href="#b-details" class="product-link">
+				    <img src="images/02.jpg"  width="288" height="384">
+				    <div class="name">Tweedle</div>
+				    <div class="price">$102.00</div>
+                </a>
+			</li>
+			<li>
+                <a id="c" href="#c-details" class="product-link">
+				    <img src="images/03.jpg"  width="288" height="384">
+				    <div class="name">Multiplex Echo</div>
+				    <div class="price">$103.00</div>
+                </a>
+			</li>
+            <li>
+                <a id="c" href="#c-details" class="product-link">
+				    <img src="images/04.jpg"  width="288" height="384">
+				    <div class="name">Phase Shifter</div>
+				    <div class="price">$104.00</div>
+                </a>
+			</li>
+            <li>
+                <a id="c" href="#c-details" class="product-link">
+				    <img src="images/05.jpg"  width="288" height="384">
+				    <div class="name">Phase Shifter 2</div>
+				    <div class="price">$105.00</div>
+                </a>
+			</li>
+            <li>
+                <a id="c" href="#c-details" class="product-link">
+				    <img src="images/06.jpg"  width="288" height="384">
+				    <div class="name">Delay</div>
+				    <div class="price">$106.00</div>
+                </a>
+			</li>
+            <li>
+                <a id="c" href="#c-details" class="product-link">
+				    <img src="images/07.jpg"  width="288" height="384">
+				    <div class="name">Ugly Face</div>
+				    <div class="price">$107.00</div>
+                </a>
+			</li>
+            <li>
+                <a id="c" href="#c-details" class="product-link">
+				    <img src="images/08.jpg"  width="288" height="384">
+				    <div class="name">SHO Boost</div>
+				    <div class="price">$108.00</div>
+                </a>
+			</li>
+            <li>
+                <a id="c" href="#c-details" class="product-link">
+				    <img src="images/09.jpg"  width="288" height="384">
+				    <div class="name">Fuzz Face</div>
+				    <div class="price">$109.00</div>
+                </a>
+			</li>
+            
+            <div style="clear: both"></div>
+		</ul>
+        <!-- Product list ********************************************** -->
+        
+        
+        <!-- Product Details ********************************************** -->
+        <div id="a-details" class="product-details">
+            <div class="product-details-inner">
+                <div class="close-button close-details-button"></div>
+                <img class="product-detail-image" src="images/01.jpg"  width="288" height="384">
+                <div class="product-detail-details">
+                    <div class="product-detail-name">
+                        <h1>Cat Fuzz</h1>
+                        <p>Emits screeching hissing fur balls of doom. </p>
+                        <p><a class="add-to-cart" 
+                              href="#" 
+                              data-name="Fuzz Face" 
+                              data-price="101.00">Add to Cart</a></p>
+                    </div>
+                    <div class="product-detail-price">$101.00</div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="b-details" class="product-details">
+            <div class="product-details-inner">
+                <div class="close-button close-details-button"></div>
+                <img class="product-detail-image" src="images/02.jpg"  width="288" height="384">
+                <div class="product-detail-details">
+                    <div class="product-detail-name">
+                        <h1>Tweedle</h1>
+                        <p>Five knobs that each control one of five parameters. </p>
+                        <p><a class="add-to-cart" 
+                              href="#" 
+                              data-name="Tweedle" 
+                              data-price="102.00">Add to Cart</a></p>
+                    </div>
+                    <div class="product-detail-price">$102.00</div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="c-details" class="product-details">
+            <div class="product-details-inner">
+                <div class="close-button close-details-button"></div>
+                <img class="product-detail-image" src="images/03.jpg"  width="288" height="384">
+                <div class="product-detail-details">
+                    <div class="product-detail-name">
+                        <h1>Multiplex Echo</h1>
+                        <p>Two switches, three modes, four knobs do you need more?</p>
+                        <p><a class="add-to-cart" 
+                              href="#" 
+                              data-name="Multiplex Echo" 
+                              data-price="103.00">Add to Cart</a></p>
+                    </div>
+                    <div class="product-detail-price">$103.00</div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="c-details" class="product-details">
+            <div class="product-details-inner">
+                <div class="close-button close-details-button"></div>
+                <img class="product-detail-image" src="images/04.jpg"  width="288" height="384">
+                <div class="product-detail-details">
+                    <div class="product-detail-name">
+                        <h1>Phase Shifter</h1>
+                        <p>The buttery sounds of grated cheese synthsized in 
+                        analog circuitry.</p>
+                        <p><a class="add-to-cart" 
+                              href="#" 
+                              data-name="Phase Shifter" 
+                              data-price="104.00">Add to Cart</a></p>
+                    </div>
+                    <div class="product-detail-price">$104.00</div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="c-details" class="product-details">
+            <div class="product-details-inner">
+                <div class="close-button close-details-button"></div>
+                <img class="product-detail-image" src="images/05.jpg"  width="288" height="384">
+                <div class="product-detail-details">
+                    <div class="product-detail-name">
+                        <h1>Phase Shifter 2</h1>
+                        <p>Shifts the phase in 5 or six stages. Use the switch 
+                        to toggle your choice.</p>
+                        <p><a class="add-to-cart" 
+                              href="#" 
+                              data-name="Phase Shifter 2" 
+                              data-price="105.00">Add to Cart</a></p>
+                    </div>
+                    <div class="product-detail-price">$105.00</div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="c-details" class="product-details">
+            <div class="product-details-inner">
+                <div class="close-button close-details-button"></div>
+                <img class="product-detail-image" src="images/06.jpg"  width="288" height="384">
+                <div class="product-detail-details">
+                    <div class="product-detail-name">
+                        <h1>Delay</h1>
+                        <p>Delay with many knobs to satisfy the many needs of 
+                        and personal preferences.</p>
+                        <p><a class="add-to-cart" 
+                              href="#" 
+                              data-name="Delay" 
+                              data-price="106.00">Add to Cart</a></p>
+                    </div>
+                    <div class="product-detail-price">$106.00</div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="c-details" class="product-details">
+            <div class="product-details-inner">
+                <div class="close-button close-details-button"></div>
+                <img class="product-detail-image" src="images/07.jpg"  width="288" height="384">
+                <div class="product-detail-details">
+                    <div class="product-detail-name">
+                        <h1>Ugly Face</h1>
+                        <p>Crazy synthesizer noise maker happy fun time scares 
+                            the cats.</p>
+                        <p><a class="add-to-cart" 
+                              href="#" 
+                              data-name="SHO Boost" 
+                              data-price="107.00">Add to Cart</a></p>
+                    </div>
+                    <div class="product-detail-price">$107.00</div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="c-details" class="product-details">
+            <div class="product-details-inner">
+                <div class="close-button close-details-button"></div>
+                <img class="product-detail-image" src="images/08.jpg"  width="288" height="384">
+                <div class="product-detail-details">
+                    <div class="product-detail-name">
+                        <h1>SHO Boost</h1>
+                        <p>Sounds like you only louder, much louder.</p>
+                        <p><a class="add-to-cart" 
+                              href="#" 
+                              data-name="SHO Boost" 
+                              data-price="108.00">Add to Cart</a></p>
+                    </div>
+                    <div class="product-detail-price">$108.00</div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="c-details" class="product-details">
+            <div class="product-details-inner">
+                <div class="close-button close-details-button"></div>
+                <img class="product-detail-image" src="images/09.jpg"  width="288" height="384">
+                <div class="product-detail-details">
+                    <div class="product-detail-name">
+                        <h1>Car Crash</h1>
+                        <p>Car Crash fuzz. The sounds of twisted metal and broken
+                        glass in a box.</p>
+                        <p><a class="add-to-cart" 
+                              href="#" 
+                              data-name="Car Crash" 
+                              data-price="109.00">Add to Cart</a></p>
+                    </div>
+                    <div class="product-detail-price">$109.00</div>
+                </div>
+            </div>
+        </div>
+        <!-- Product Details ********************************************** -->
+		
+        
+        <!-- Shopping Cart ********************************************** -->
+        <div id="shopping-cart-container" class="shopping-cart-wrapper hide-cart">
+            <div class="shopping-cart">
+                <div id="close-cart-button" class="close-button"></div>
+            
+                <h1>Shopping cart</h1>
+                <ul id="cart-ul">
+                    <!-- Cart displays here -->
+                </ul>
+                <div>
+                    Total: <span class="cart-total"></span>
+                </div>
+                <div><button id="update-cart-button">Update Cart</button></div>
+            </div>
+        </div>
+        <!-- Shopping Cart ********************************************** -->
+        
+        
+        
+        <!-- JavaScript ********************************************** -->
+        <script src="jquery-2.0.3.min.js"></script>
+        <script src="cart.js"></script>
+        <script>
+            
+            
+            // ------------------------------------------------------------
+            // This function handles the add-to-cart buttons
+            // ------------------------------------------------------------
+            
+            $(".add-to-cart").click(function(event){
+                event.preventDefault();
+                // Get the name, price, and count for this item from it's data attributes
+                var name = $(this).attr("data-name");
+                var price = $(this).attr("data-price");
+                var count = 1;
+                
+                // Add the item to the cart
+                addItem(name, price, count);
+                
+                // Test add-to-cart with the console.
+                console.log(cart);
+                
+                updateCart();
+            });
+            
+            
+            
+            // -------------------------------------------------------------
+            // This function updates the cart, call it each time you change
+            // the contents of the cart. 
+            // -------------------------------------------------------------
+            function updateCart() {
+                if (cart.length == 0) {
+                    $("#cart-ul").html("Your cart is empty");
+                    $("#cart-count").html("Your cart is empty");
+                    $(".cart-total").html("");
+                    return;
+                }
+                
+                // Make some HTML text that represents the cart
+                var html = "";
+                // Loop through the cart 
+                for (var i in cart) {
+                    // Get the name, price, and count
+                    var name = cart[i].name;
+                    var price = cart[i].price.toFixed(2);
+                    var count = cart[i].count;
+                    // Now add some html to the html variable
+                    html += "<li>"+name+" $"+price+" x <input class='item-count' data-name='"+name+"' type='number' value='"+count+"'>";
+                    html += "<button class='add-one-item' data-name='"+name+"'>+</button>";
+                    html += "<button class='subtract-one-item' data-name='"+name+"'>-</button>";
+                    html += " = $"+(price * count).toFixed(2);
+                    html += "</li>";
+                }
+                
+                // after the loop completes write the html string into the page
+                $("#cart-ul").html(html);
+                
+                // Update the cart count and total
+                $("#cart-count").html("You have "+getCount()+" items in your cart");
+                $(".cart-total").html("$"+getTotal());
+            }
+            
+            updateCart();
+            
+            
+            $("body").on("click", ".add-one-item", function(event){
+                var name = $(this).attr("data-name");
+                addItem(name);
+                updateCart();
+            });
+
+            $("body").on("click", ".subtract-one-item", function(event){
+                var name = $(this).attr("data-name");
+                removeItem(name)
+                updateCart();
+            });
+            
+            
+            // ***************************************************
+            // Cart input count
+            
+            $("body").on("change", ".item-count", function(event){
+                var name = $(this).attr("data-name");
+                var count = Number($(this).val());
+                console.log(name, count);
+                setCountForName(count, name);
+                updateCart();
+            });
+            
+            $("#update-cart-button").submit(function(event){
+                event.preventDefault();
+                
+            });
+            // ***************************************************
+            
+            
+            
+            // ------------------------------------------------------------
+            // These functions work with the UI elements to hide and show 
+            // products and the shopping cart
+            // ------------------------------------------------------------
+            
+            // Handle clicks on #show-cart
+            $("#show-cart").click(function(event){
+                // adds/removes the class hide-cart on #shopping-cart-container
+                // $("body").addClass("show-overlay");
+                $("#shopping-cart-container").toggleClass("hide-cart");
+            });
+            
+            // Handles clicks on #close-cart-button
+            $("#close-cart-button").click(function(event){
+                // add hide-cart class to #shopping-cart-container
+                // $("body").removeClass("show-overlay");
+                $("#shopping-cart-container").addClass("hide-cart");
+            });
+            
+            // Handle clicks on .product-link elements
+            $(".product-link").click(function(event){
+                event.preventDefault(); // This is a link prevent the default behavior
+                var id = $(this).attr("href"); // Get the id
+                // add the show class to the element "#"+id+"-details"
+                $(id).addClass("show");
+                // $("body").addClass("show-overlay");
+            });
+            
+            // Handle clicks on elements with the class name .close-details-button
+            $(".close-details-button").click(function(event){
+                // Search up the DOM tree for an element with class .product-details
+                // and remove the class show. 
+                $(this).parents(".product-details").removeClass("show");
+                $("body").removeClass("show-overlay");
+            });
+            
+    
+            
+        </script>
+	</body>
+</html>

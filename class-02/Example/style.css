@@ -1,0 +1,126 @@
+
+
+.container {
+    max-width: 900px;
+    margin: auto;
+}
+
+
+/* Clearfix */
+.clearfix:after {
+    content:"";
+    display:block;
+    clear:both;
+}
+
+
+/* I added this text box on top of the image */
+.box {
+    width: calc(33.3333% - 2em);
+    margin: 1em;
+    background-color: red;
+    float: left;
+    position: relative; /* The container must be relative! */
+}
+
+/* I added this text box on top of the image */
+.box-text {
+    color: white;
+    text-align: center;
+    background: black;
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 2em;
+    width: calc(100% - 4em);   /* Use calc! */
+    height: calc(100% - 4em);
+    opacity: 0; /* Hide the box in it's default state. Look below for the hover that makes this visible! */
+    transition: 400ms; /* Animate the effect */
+}
+
+.box-img {
+    transition: 400ms; /* Animate the effect */
+}
+
+.box-img > img {
+    width: 100%;
+    height: auto;
+}
+
+.social-icon {
+    width: 33.333%;
+    float: left;
+    text-align: center;
+    padding: 1em 0 1em 0;
+    color: white;
+}
+
+
+.top-bar {
+    background-color: gray;
+}
+
+.title {
+    float: left;
+}
+
+.links {
+    float: right;
+}
+
+.links ul, .links li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.links li {
+    display: inline-block;
+}
+
+
+
+
+/* Hovering over a box applies these types */
+.box:hover .box-img {
+    opacity: 0.5;
+}
+
+/* Make box-text visible on a hover */
+.box:hover .box-text {
+    opacity: 1;
+}
+
+
+@media only screen and (min-width: 768px) {
+    
+} 
+
+@media only screen and (max-width: 767px) {
+    .box {
+        width: calc(100% - 2em);
+    }
+    
+    .title {
+        float: none;
+    }
+    
+    .title h1 {
+        text-align: center;
+    }
+    
+    .links {
+        display: none;
+    }
+} 
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Absolute and Relative Position</title>
+		
+		<style type="text/css">
+.box {
+    position: relative;
+    width: 300px;
+    height: 300px;
+}
+
+.small-box {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: #000;
+}
+
+.red .small-box {
+    left: 0;
+    top: 100px;
+}
+
+.green .small-box {
+    right: 10px;
+    top: 10px;
+}
+
+.blue .small-box {
+    right: 100px;
+    top: 160px;
+}
+
+.yellow .small-box {
+    right: 50%;
+    top: 50%;
+}
+
+
+.red {
+    top: 20px;
+    left: 20px;
+    background-color: rgba(255,0,0,0.5);	
+}
+
+.green {
+    background-color: rgba(0,255,0,0.5);	
+}
+
+.blue {
+    right: -130px;
+    bottom:10px;
+    background-color: rgba(0,0,255,0.5);	
+}
+
+.yellow {
+    background-color: rgba(255,255,0,0.5);	
+}
+
+p {
+    font-size: 36px;
+}
+		</style>
+	</head>
+	<body>
+<div class="box red">
+    <div class="small-box"></div>
+</div>
+<div class="box green">
+    <div class="small-box"></div>
+</div>
+<div class="box blue">
+    <div class="small-box"></div>
+</div>
+<div class="box yellow">
+    <div class="small-box"></div>
+</div>
+
+<p>Here each small-box has position absolute while it's parent/ancestor has 
+position relative. Notice the positions (left, top, right, and bottom) are 
+measured from the position of the relative ancestor! I used the exclamation 
+point because that was important.</p>
+
+<p></p>
+	</body>
+</html>

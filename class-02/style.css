@@ -1,0 +1,54 @@
+
+
+.container {
+    max-width: 900px;
+    margin: auto;
+}
+
+.box {
+    width: calc(33.3333% - 2em);
+    margin: 1em;
+    background-color: red;
+    float: left;
+}
+
+.box-img {
+    background-color: yellow;
+}
+
+.box-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.social-icon {
+    width: 33.333%;
+    float: left;
+    text-align: center;
+    padding: 1em 0 1em 0;
+    color: white;
+}
+
+/* Desktop */
+@media only screen and (min-width: 768px) {
+    
+} 
+
+/* Mobile */
+@media only screen and (max-width: 767px) {
+    .box {
+        width: calc(100% - 2em);
+    }
+} 
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<style>
+			body {
+				font-family: Helvetica;
+				font-size: 18px;
+				background-color: rgb(33, 33, 33);
+			}
+            
+            a {
+                color: #ccc;
+                text-decoration: none;
+            }
+            
+            a:hover {
+                color: #fff;
+            }
+			
+			#list, #list li {
+				list-style-type:none;
+				margin: 0;
+				padding: 0;
+				float: left;
+				margin: 20px;
+			}
+			
+			#list li {
+				position: relative;
+				overflow: hidden;
+				width: 288px;
+				height: 384px;
+			}
+			
+			#list li img {
+				position: absolute;
+				display:block;
+				left: 0;
+				top: 0;
+				transition: 1200ms;
+			}
+			
+			#list li:hover img {
+				-webkit-transform: scale(1.15) rotate(3deg);
+			}
+			
+			.name, .price {
+				position: absolute;
+				transition: 400ms cubic-bezier(0.23, 1, 0.32, 1);
+			}
+			
+			.name {
+				left: 0; 
+				bottom: -41px;
+				color: #222;
+				width: 268px;
+				background-color: rgba(250,250,250,1);
+				padding: 10px;
+				box-shadow: 1px 1px 6px rgba(0,0,0, 0.5);
+			}
+			
+			#list li:hover .name {
+				bottom: 0;
+			}	
+            
+            .product-link {
+                display: block;
+            }
+			
+			.price {
+				right: -150px;
+				top: 18px;
+				width: 100px;
+				height: 20px;
+				padding: 0 25px;
+				/* background-color: rgba(250,92,79, 1); */
+				background-image: url(images/flag.svg);
+				background-size: cover;
+				
+				font-size: 0.8em;
+				line-height: 20px;
+				/* box-shadow: 1px 1px 6px rgba(0,0,0, 0.5); */
+				-webkit-filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.5));
+				transition-delay: 600ms;
+			}
+			
+			#list li:hover .price {
+				right: 0;
+			}
+			
+            
+            .shopping-cart-wrapper {
+                position:absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.5);
+            }
+            
+            .shopping-cart {
+                width: 600px;
+                background: #ddd;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                -webkit-transition: 400ms;
+            }
+            
+            .hide-cart {
+                opacity: 0;
+                display: none;
+            }
+            
+            .close-button {
+                position: absolute;
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                background: red;
+                right: -15px;
+                top: -15px;
+            }
+			
+            
+            .product-details {
+                display: none;
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(255, 255, 255, 0.75);
+                box-shadow: 0 0 40px #000;
+            }
+            
+            .product-details.show {
+                display: block;
+            }
+            
+            .product-details-inner {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                -webkit-transform: translate(-50%, -50%);
+                background: #000;
+                width: calc(288px * 2);
+                height: 384px;
+            }
+            
+            .product-detail-image {
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+            
+            .product-detail-details {
+                position: absolute;
+                right: 0;
+                top: 0;
+                width: calc(288px - 2em);
+                margin: 1em;
+                color: #fff;
+            }
+		</style>
+	</head>
+	<body>
+        
+        <div>
+            <a id="show-cart" href="#">Cart</a>
+        </div>
+		
+        <!-- Product list ********************************************** -->
+		<ul id="list">
+			<li>
+                <a id="a" href="#a-details" class="product-link">
+				    <img src="images/optimized.jpg"  width="288" height="384">
+				    <div class="name">Fuzz Face</div>
+				    <div class="price">$400,000.00</div>
+                </a>
+			</li>
+			<li>
+                <a id="b" href="#b-details" class="product-link">
+				    <img src="images/optimized-1.jpg"  width="288" height="384">
+				    <div class="name">Ugly Face</div>
+				    <div class="price">$1,200,000.00</div>
+                </a>
+			</li>
+			<li>
+                <a id="c" href="#c-details" class="product-link">
+				    <img src="images/optimized-2.jpg"  width="288" height="384">
+				    <div class="name">SHO Boost</div>
+				    <div class="price">$120,000.00</div>
+                </a>
+			</li>
+		</ul>
+        <!-- Product list ********************************************** -->
+        
+        
+        <!-- Product Details ********************************************** -->
+        <div id="a-details" class="product-details">
+            <div class="product-details-inner">
+                <div class="close-button close-details-button"></div>
+                <img class="product-detail-image" src="images/optimized.jpg"  width="288" height="384">
+                <div class="product-detail-details">
+                    <div class="product-detail-name">
+                        <h1>Fuzz Face</h1>
+                        <p>Crazy synthesizer noise maker happy fun time scares the cats.</p>
+                        <p><a class="add-to-cart" href="" data-name="Fuzz Face" data-price="200999.00">Add to Cart</a></p>
+                    </div>
+                    <div class="product-detail-price">$200,999.00</div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="b-details" class="product-details">
+            <div class="product-details-inner">
+                <div class="close-button close-details-button"></div>
+                <img class="product-detail-image" src="images/optimized-1.jpg"  width="288" height="384">
+                <div class="product-detail-details">
+                    <div class="product-detail-name">
+                        <h1>Fuzz Face</h1>
+                        <p>Crazy synthesizer noise maker happy fun time scares the cats.</p>
+                        <p><a class="add-to-cart" href="" data-name="Ugly Face" data-price="40000.00">Add to Cart</a></p>
+                    </div>
+                    <div class="product-detail-price">$400,000.00</div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="c-details" class="product-details">
+            <div class="product-details-inner">
+                <div class="close-button close-details-button"></div>
+                <img class="product-detail-image" src="images/optimized-2.jpg"  width="288" height="384">
+                <div class="product-detail-details">
+                    <div class="product-detail-name">
+                        <h1>SHO Boost</h1>
+                        <p>Crazy synthesizer noise maker happy fun time scares the cats.</p>
+                        <p><a class="add-to-cart" href="" data-name="SHO Boost" data-price="298003.00">Add to Cart</a></p>
+                    </div>
+                    <div class="product-detail-price">$298,003.00</div>
+                </div>
+            </div>
+        </div>
+        <!-- Product Details ********************************************** -->
+		
+        
+        <!-- Shopping Cart ********************************************** -->
+        <div id="shopping-cart-container" class="shopping-cart-wrapper hide-cart">
+            <div class="shopping-cart">
+                <div id="close-cart-button" class="close-button"></div>
+                <h1>Shopping cart</h1>
+                <ul id="cart-ul">
+                    <li>Item 1 qty: 3 Price: 1</li>
+                    <li>Item 1 qty: 3 Price: 1</li>
+                    <li>Item 1 qty: 3 Price: 1</li>
+                    <li>Item 1 qty: 3 Price: 1</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Shopping Cart ********************************************** -->
+        
+        
+        
+        <!-- JavaScript ********************************************** -->
+        <script src="jquery-2.0.3.min.js"></script>
+        <script src="cart.js"></script>
+        <script>
+            
+            
+            // ------------------------------------------------------------
+            // This function handles the add-to-cart buttons
+            // ------------------------------------------------------------
+            
+            $(".add-to-cart").click(function(event){
+                event.preventDefault();
+                // Get the name, price, and count for this item from it's data attributes
+                var name = $(this).attr("data-name");
+                var price = $(this).attr("data-price");
+                var count = 1;
+                
+                // Add the item to the cart
+                addItem(name, price, count);
+                
+                // Test add-to-cart with the console.
+                console.log(cart);
+                
+                updateCart();
+            });
+            
+            
+            
+            // -------------------------------------------------------------
+            // This function updates the cart, call it each time you change
+            // the contents of the cart. 
+            // -------------------------------------------------------------
+            function updateCart() {
+                // Make some HTML text that represents the cart
+                var html = "";
+                // Loop through the cart 
+                for (var i in cart) {
+                    // Get the name, price, and count
+                    var name = cart[i].name;
+                    var price = cart[i].price;
+                    var count = cart[i].count;
+                    // Now add some html to the html variable
+                    html += "<li>"+name+" $"+price+" x "+count+"</li>";
+                }
+                
+                // after the loop completes write the html string into the page
+                $("#cart-ul").html(html);
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+            // ------------------------------------------------------------
+            // These functions work with the UI elements to hide and show 
+            // products and the shopping cart
+            // ------------------------------------------------------------
+            
+            // Handle clicks on #show-cart
+            $("#show-cart").click(function(event){
+                // adds/removes the class hide-cart on #shopping-cart-container
+                $("#shopping-cart-container").toggleClass("hide-cart");
+            });
+            
+            // Handles clicks on #close-cart-button
+            $("#close-cart-button").click(function(event){
+                // add hide-cart class to #shopping-cart-container
+                $("#shopping-cart-container").addClass("hide-cart");
+            });
+            
+            // Handle clicks on .product-link elements
+            $(".product-link").click(function(event){
+                event.preventDefault(); // This is a link prevent the default behavior
+                var id = $(this).attr("href"); // Get the id
+                // add the show class to the element "#"+id+"-details"
+                $(id).addClass("show");
+            });
+            
+            // Handle clicks on elements with the class name .close-details-button
+            $(".close-details-button").click(function(event){
+                // Search up the DOM tree for an element with class .product-details
+                // and remove the class show. 
+                $(this).parents(".product-details").removeClass("show");
+            });
+            
+            
+        </script>
+	</body>
+</html>
